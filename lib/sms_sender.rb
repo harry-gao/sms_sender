@@ -3,12 +3,12 @@ require 'base64'
 require 'httparty'
 
 class SmsSender
-  @@host = 'api.smsglobal.com'
-  @@port = '443'
-  @@request_url = '/v1/sms/'
-  def initialize(client_id, client_secret)
+  def initialize(client_id, client_secret, host='api.smsglobal.com', port='443', request_url='/v1/sms/' )
     @client_id = client_id
     @secret = client_secret
+    @host = host
+    @port = port
+    @request_url = request_url
   end
 
   def send(title, msg, mobile)
@@ -21,13 +21,13 @@ class SmsSender
 
     body = {"origin"=>title, "destination"=>mobile, "message"=>msg }
 
-    response = HTTParty.post("https://#{@@host}#{@@request_url}", headers: header, body: body.to_json)
+    response = HTTParty.post("https://#{@host}#{@request_url}", headers: header, body: body.to_json)
     response.code
   end
 
   private
   def calculate_mac
-    body = "#{@ts}\n#{@nonce}\nPOST\n#{@@request_url}\n#{@@host}\n#{@@port}\n\n"
+    body = "#{@ts}\n#{@nonce}\nPOST\n#{@request_url}\n#{@host}\n#{@port}\n\n"
     digest = Digest::HMAC.digest(body, @secret, Digest::SHA256)
     Base64.strict_encode64 digest
   end
