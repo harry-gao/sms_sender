@@ -19,7 +19,7 @@ class SmsSender
               'Content-Type' => 'application/json',
               'Accept' => 'application/json'}
 
-    protocol = port == 443 ? 'https' : 'http'
+    protocol = @port == 443 ? 'https' : 'http'
     body = {"origin"=>title, "destination"=>mobile, "message"=>msg }
 
     response = HTTParty.post("#{protocol}://#{@host}#{@request_url}", headers: header, body: body.to_json)
