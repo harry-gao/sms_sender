@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'sms_global_sender'
-  s.version     = '0.0.3'
+  s.version     = '0.0.5'
   s.date        = '2014-02-05'
   s.summary     = "Send sms through SMS gateway"
   s.description = "specific to smsglobal.com.au"
