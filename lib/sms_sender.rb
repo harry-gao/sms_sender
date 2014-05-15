@@ -21,8 +21,7 @@ class SmsSender
 
     protocol = @port.to_s == '443' ? 'https' : 'http'
     body = {"origin"=>title, "destination"=>mobile, "message"=>msg }
-
-    response = HTTParty.post("#{protocol}://#{@host}#{@request_url}", headers: header, body: body.to_json)
+    response = HTTParty.post("#{protocol}://#{@host}:#{@port}#{@request_url}", headers: header, body: body.to_json)
     response.code
   end
 
