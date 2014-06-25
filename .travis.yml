@@ -9,5 +9,5 @@ cache: bundler
 
 script:
 - rspec spec/
-- if [[$TRAVIS_TEST_RESULT == 0 ]]; then echo 'sorry failed'; fi
-- if [[$TRAVIS_TEST_RESULT == 0 ]]; then echo 'all good'; fi
+- if [[ $TRAVIS_TEST_RESULT == 0 ]]; then echo 'sorry failed'; fi
+- if [[ $TRAVIS_TEST_RESULT == 0 ]]; then echo 'all good'; fi
